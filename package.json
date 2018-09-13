@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-workshop",
+  "name": "rails-decal-slides",
   "version": "1.0.0",
   "description": "",
   "main": "reveal.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/InnovativeDesign/gatsby-workshop.git"
+    "url": "git+https://github.com/rails-decal/fa18-slides.git"
   },
   "author": "Ethan Lee <ethanl@berkeley.edu>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/InnovativeDesign/gatsby-workshop/issues"
+    "url": "https://github.com/rails-decal/fa18-slides/issues"
   },
-  "homepage": "https://github.com/InnovativeDesign/gatsby-workshop#readme",
+  "homepage": "https://github.com/rails-decal/fa18-slides#readme",
   "dependencies": {
     "http-server": "^0.11.1"
   }
