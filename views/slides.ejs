@@ -6,7 +6,7 @@
     />
     <meta
       property="og:description"
-      content="Lecture slides for Week 1 of Rails DeCal."
+      content="Lecture slides for Week <%= number %> of Rails DeCal."
     />
     <meta
       property="og:type"
@@ -15,15 +15,15 @@
       property="og:url"
       content="https://.rails.world"
     />
-    <link rel="stylesheet" href="reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="reveal.js/css/theme/simple.css">
-    <link rel="stylesheet" href="slide-style.css">
-    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="/assets/slide-style.css">
+    <link rel="stylesheet" href="/reveal.js/lib/css/zenburn.css">
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown="slides.md"  
+        <section data-markdown="/slides/<%= week %>.md"  
           data-separator="^(\r\n?|\n)---(\r\n?|\n)$"  
           data-separator-vertical="^(\r\n?|\n)----(\r\n?|\n)$"
           data-separator-notes="^Note:"  
@@ -31,31 +31,53 @@
         </section>
       </div>
       <div class="logo">
-        <img src="assets/logo__icon.svg" />
+        <img src="/assets/logo__icon.svg" />
       </div>
     </div>
-    <script src="reveal.js/lib/js/head.min.js"></script>
-    <script src="reveal.js/js/reveal.js"></script>
+    <script src="/reveal.js/lib/js/head.min.js"></script>
+    <script src="/reveal.js/js/reveal.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
       Reveal.initialize({
         history: true,
+        fragmentInURL: true,
         dependencies: [
             {
-              src: 'reveal.js/plugin/markdown/marked.js',
+              src: '/reveal.js/plugin/markdown/marked.js',
               condition: function() { return !!document.querySelector( '[data-markdown]' ); }
             },
             {
-              src: 'reveal.js/plugin/markdown/markdown.js',
+              src: '/reveal.js/plugin/markdown/markdown.js',
               condition: function() { return !!document.querySelector( '[data-markdown]' );}
             },
             {
-              src: 'reveal.js/plugin/highlight/highlight.js',
+              src: '/reveal.js/plugin/highlight/highlight.js',
               async: true,
               callback: function() { hljs.initHighlightingOnLoad(); }
             },
         ]
       });
       Reveal.addEventListener("ready", function() {
+        <% if (student) { %>
+          var socket = io.connect("/students");
+        <% } else { %>
+          var socket = io.connect("/presenter");
+        <% } %>
+        socket.on("connect", function() {
+          console.info("Connected to slide sync");
+
+          <% if (student) { %>
+              socket.on("slide", function(indexes) {
+                Reveal.setState(indexes);
+              });
+          <% } else { %>
+              socket.emit("auth", "<%= process.env.SECRET %>");
+              Reveal.addEventListener("slidechanged", function(event) {
+                socket.emit("slide", Reveal.getState());
+              } );
+          <% } %>
+        });
+
         var historyList = [], historyIndex = 0;
         var lines = [], printed = false, webruby, load_string_func;
         var partial_src = "";
