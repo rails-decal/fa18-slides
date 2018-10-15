@@ -50,12 +50,16 @@
 <h4>Tommy Poa</h4>
 </div>
 <div style="display: flex; align-items: center; margin-right: 35px;">
+<img src="https://cl.ly/a29c2153fc44/Image%202018-09-13%20at%205.06.23%20PM.png" width="75" height="75" style="border-radius: 100%; margin: 20px;">
+<h4>Florence Lau</h4>
+</div>
+<div style="display: flex; align-items: center; margin-right: 35px;">
 <img src="https://cl.ly/c3839394e67d/Image%202018-09-13%20at%201.29.58%20PM.png" width="75" height="75" style="border-radius: 100%; margin: 20px;">
-<h4>Jessica Hsiao <sup style="font-size: 12pt">*OH only</sup></h4>
+<h4>Jessica Hsiao <sup style="font-size: 12pt">OH only</sup></h4>
 </div>
 <div style="display: flex; align-items: center; margin-right: 35px;">
 <img src="https://cl.ly/a31a52706613/Image%202018-09-13%20at%2010.08.00%20AM.png" width="75" height="75" style="border-radius: 100%; margin: 20px;">
-<h4>Joshua Yang <sup style="font-size: 12pt">*OH only</sup></h4>
+<h4>Joshua Yang <sup style="font-size: 12pt">OH only</sup></h4>
 </div>
 </div>
 

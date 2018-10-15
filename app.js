@@ -56,6 +56,7 @@ app.use("/teach", basicAuth({
 }));
 
 app.get("/teach/:week", function(req, res) {
+  currentWeek = req.params.week;
   res.render("slides", {
     week: req.params.week,
     number: +req.params.week.split("week").pop(),

@@ -13,8 +13,9 @@
       content="website" />
     <meta
       property="og:url"
-      content="https://.rails.world"
+      content="https://see.rails.world"
     />
+    <link href="https://joshnuss.github.io/mruby-web-irb/css/screen.css" media="screen" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="/reveal.js/css/theme/simple.css">
     <link rel="stylesheet" href="/assets/slide-style.css">
@@ -72,9 +73,15 @@
               });
           <% } else { %>
               socket.emit("auth", "<%= process.env.SECRET %>");
+              Reveal.addEventListener("fragmenthidden", function(event) {
+                socket.emit("slide", Reveal.getState());
+              });
+              Reveal.addEventListener("fragmentshown", function(event) {
+                socket.emit("slide", Reveal.getState());
+              });
               Reveal.addEventListener("slidechanged", function(event) {
                 socket.emit("slide", Reveal.getState());
-              } );
+              });
           <% } %>
         });
 
@@ -367,7 +374,6 @@
         });
       });
     </script>
-    <link href="https://joshnuss.github.io/mruby-web-irb/css/screen.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/theme-monokai.js" type="text/javascript" charset="utf-8"></script>

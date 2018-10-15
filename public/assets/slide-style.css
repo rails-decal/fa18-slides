@@ -83,7 +83,16 @@ body {
 > section:not(:first-child) p,
 .reveal .slides 
 > section.stack 
-> section:not(:first-child) li {
+> section:not(:first-child) li,
+.reveal .slides 
+> section.stack 
+> section:not(:first-child) h2,
+.reveal .slides 
+> section.stack 
+> section:not(:first-child) h3,
+.reveal .slides 
+> section.stack 
+> section:not(:first-child) h4 {
   color: black;
   font-family: Gibson, BlinkMacSystemFont, sans-serif;
 }

@@ -24,5 +24,6 @@
     "express-basic-auth": "^1.1.5",
     "http-server": "^0.11.1",
     "socket.io": "^2.1.1"
-  }
+  },
+  "alias": "see.rails.world"
 }
